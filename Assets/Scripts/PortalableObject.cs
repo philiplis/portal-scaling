@@ -18,7 +18,18 @@ public class PortalableObject : MonoBehaviour
     private new Rigidbody rigidbody;
     protected new Collider collider;
 
+    
+
     private static readonly Quaternion halfTurn = Quaternion.Euler(0.0f, 180.0f, 0.0f);
+
+    //Set up for scaling
+    private ScaleController scaleController;
+    private float currentScale = 0;
+    private void Start()
+    {
+        scaleController = FindObjectOfType<ScaleController>();
+    }
+
 
     protected virtual void Awake()
     {
@@ -94,6 +105,10 @@ public class PortalableObject : MonoBehaviour
         Vector3 relativeVel = inTransform.InverseTransformDirection(rigidbody.velocity);
         relativeVel = halfTurn * relativeVel;
         rigidbody.velocity = outTransform.TransformDirection(relativeVel);
+
+        //update Scale of the object
+        float scaleRatio = outPortal.currentScale / inPortal.currentScale;
+        transform.localScale *= scaleRatio;
 
         // Swap portal references.
         var tmp = inPortal;

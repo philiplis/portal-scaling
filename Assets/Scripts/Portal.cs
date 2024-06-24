@@ -17,11 +17,17 @@ public class Portal : MonoBehaviour
     [SerializeField]
     private LayerMask placementMask;
 
+    [SerializeField]
+    private float scaleFactor;
+
     private bool isPlaced = true;
     [SerializeField]
     private Collider wallCollider;
 
     private List<PortalableObject> portalObjects = new List<PortalableObject>();
+
+    private ScaleController scaleController;
+    public float currentScale;
 
     private Material material;
     private new Renderer renderer;
@@ -36,6 +42,7 @@ public class Portal : MonoBehaviour
 
     private void Start()
     {
+        scaleController = FindObjectOfType<ScaleController>();
         PlacePortal(wallCollider, transform.position, transform.rotation);
         SetColour(portalColour);
     }
@@ -98,7 +105,7 @@ public class Portal : MonoBehaviour
     {
         var obj = other.GetComponent<PortalableObject>();
 
-        if(portalObjects.Contains(obj))
+        if (portalObjects.Contains(obj))
         {
             portalObjects.Remove(obj);
             obj.ExitPortal(wallCollider);
@@ -111,6 +118,9 @@ public class Portal : MonoBehaviour
         transform.position = pos;
         transform.rotation = rot;
         transform.position -= transform.forward * 0.001f;
+
+        currentScale = scaleController.scaleFactor;
+        transform.localScale = new Vector3(currentScale, currentScale, currentScale);
 
         FixOverhangs();
         FixIntersects();
@@ -135,17 +145,17 @@ public class Portal : MonoBehaviour
             -Vector3.up
         };
 
-        for(int i = 0; i < 4; ++i)
+        for (int i = 0; i < 4; ++i)
         {
             RaycastHit hit;
             Vector3 raycastPos = transform.TransformPoint(testPoints[i]);
             Vector3 raycastDir = transform.TransformDirection(testDirs[i]);
 
-            if(Physics.CheckSphere(raycastPos, 0.05f, placementMask))
+            if (Physics.CheckSphere(raycastPos, 0.05f, placementMask))
             {
                 break;
             }
-            else if(Physics.Raycast(raycastPos, raycastDir, out hit, 2.1f, placementMask))
+            else if (Physics.Raycast(raycastPos, raycastDir, out hit, 2.1f, placementMask))
             {
                 var offset = hit.point - raycastPos;
                 transform.Translate(offset, Space.World);
