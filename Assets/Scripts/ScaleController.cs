@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.UI;
 //Written by Filip
@@ -34,6 +33,7 @@ public class ScaleController : MonoBehaviour
     {
            
         scaleFactorText.text = "Scale Factor: " + scaleFactor.ToString("F2"); // F2 formats to 2 decimal places
+        Debug.Log(player.transform.localScale[0].ToString("F2"));
         playerScaleText.text = "Player Scale: " + player.transform.localScale[0].ToString("F2"); // F2 formats to 2 decimal places
     }
 }

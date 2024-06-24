@@ -23,8 +23,8 @@ public class PortalableObject : MonoBehaviour
     private static readonly Quaternion halfTurn = Quaternion.Euler(0.0f, 180.0f, 0.0f);
 
     //Set up for scaling
-    private ScaleController scaleController;
-    private float currentScale = 0;
+    public ScaleController scaleController;
+    public float currentScale = 0;
     private void Start()
     {
         scaleController = FindObjectOfType<ScaleController>();
@@ -67,6 +67,10 @@ public class PortalableObject : MonoBehaviour
             Quaternion relativeRot = Quaternion.Inverse(inTransform.rotation) * transform.rotation;
             relativeRot = halfTurn * relativeRot;
             cloneObject.transform.rotation = outTransform.rotation * relativeRot;
+
+            //update scale of clone
+            float scaleRatio = outPortal.currentScale / inPortal.currentScale;
+            cloneObject.transform.localScale *= scaleRatio;
         }
         else
         {
