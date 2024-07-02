@@ -128,7 +128,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
+//[RequireComponent(typeof(Rigidbody))]
 public class CameraMove : MonoBehaviour
 {
     public float cameraSpeed = 2.0f;
@@ -144,7 +144,7 @@ public class CameraMove : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponentInParent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
 
         TargetRotation = transform.rotation;
