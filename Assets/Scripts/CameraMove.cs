@@ -208,6 +208,8 @@ public class CameraMove : MonoBehaviour
         {
             return true;
         }
+        Debug.Log("not grounded!");
         return false;
+
     }
 }
