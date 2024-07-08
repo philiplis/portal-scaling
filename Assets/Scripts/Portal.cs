@@ -131,18 +131,18 @@ public class Portal : MonoBehaviour
     {
         var testPoints = new List<Vector3>
         {
-            new Vector3(-1.1f,  0.0f, 0.1f),
-            new Vector3( 1.1f,  0.0f, 0.1f),
-            new Vector3( 0.0f, -2.1f, 0.1f),
-            new Vector3( 0.0f,  2.1f, 0.1f)
+            new Vector3(-1.1f,  0.0f, 0.1f)*currentScale,
+            new Vector3( 1.1f,  0.0f, 0.1f)*currentScale,
+            new Vector3( 0.0f, -2.1f, 0.1f)*currentScale,
+            new Vector3( 0.0f,  2.1f, 0.1f)*currentScale
         };
 
         var testDirs = new List<Vector3>
         {
-             Vector3.right,
-            -Vector3.right,
-             Vector3.up,
-            -Vector3.up
+             Vector3.right*currentScale,
+            -Vector3.right*currentScale,
+             Vector3.up*currentScale,
+            -Vector3.up*currentScale
         };
 
         for (int i = 0; i < 4; ++i)
@@ -155,7 +155,7 @@ public class Portal : MonoBehaviour
             {
                 break;
             }
-            else if (Physics.Raycast(raycastPos, raycastDir, out hit, 2.1f, placementMask))
+            else if (Physics.Raycast(raycastPos, raycastDir, out hit, 2.1f*currentScale, placementMask))
             {
                 var offset = hit.point - raycastPos;
                 transform.Translate(offset, Space.World);
@@ -168,11 +168,11 @@ public class Portal : MonoBehaviour
     {
         var testDirs = new List<Vector3>
         {
-             Vector3.right,
-            -Vector3.right,
-             Vector3.up,
-            -Vector3.up
-        };
+             Vector3.right*currentScale,
+            -Vector3.right*currentScale,
+             Vector3.up*currentScale,
+            -Vector3.up*currentScale
+        } ;
 
         var testDists = new List<float> { 1.1f, 1.1f, 2.1f, 2.1f };
 

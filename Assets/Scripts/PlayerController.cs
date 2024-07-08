@@ -16,6 +16,8 @@ public class PlayerController : PortalableObject
     public override void Warp()
     {
         base.Warp();
+        cameraMove.moveSpeed = 5.0f * transform.localScale[0];
+        cameraMove.jumpHeight = 1.5f * transform.localScale[0];
         scaleController.UpdateScaleFactorText();
         cameraMove.ResetTargetRotation();
     }

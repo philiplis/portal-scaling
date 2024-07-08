@@ -134,7 +134,7 @@ public class CameraMove : MonoBehaviour
     public float cameraSpeed = 2.0f;
     public float moveSpeed = 5.0f;
     public float gravity = 9.8f;
-    public float jumpHeight = 2.0f;
+    public float jumpHeight = 1.5f;
 
     public UnityEngine.Quaternion TargetRotation { get; private set; }
 
@@ -142,8 +142,10 @@ public class CameraMove : MonoBehaviour
     private UnityEngine.Vector3 moveVector = UnityEngine.Vector3.zero;
     private float verticalVelocity = 0.0f;
 
+
     private void Awake()
     {
+        
         rb = GetComponentInParent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -203,7 +205,8 @@ public class CameraMove : MonoBehaviour
     private bool IsGrounded()
     {
         RaycastHit hit;
-        float rayLength = 1.1f; // Adjust based on your character's size
+        float currentPlayerScale = transform.parent.transform.localScale[0];
+        float rayLength = 1.54f * currentPlayerScale; // Adjust based on your character's size
         if (Physics.Raycast(transform.position, Vector3.down, out hit, rayLength))
         {
             return true;
