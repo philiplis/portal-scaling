@@ -124,6 +124,7 @@ public class Portal : MonoBehaviour
 
         FixOverhangs();
         FixIntersects();
+        CheckOverlap();
     }
 
     // Ensure the portal cannot extend past the edge of a surface.
@@ -139,10 +140,10 @@ public class Portal : MonoBehaviour
 
         var testDirs = new List<Vector3>
         {
-             Vector3.right*currentScale,
-            -Vector3.right*currentScale,
-             Vector3.up*currentScale,
-            -Vector3.up*currentScale
+             Vector3.right,
+            -Vector3.right,
+             Vector3.up,
+            -Vector3.up
         };
 
         for (int i = 0; i < 4; ++i)
@@ -168,13 +169,13 @@ public class Portal : MonoBehaviour
     {
         var testDirs = new List<Vector3>
         {
-             Vector3.right*currentScale,
-            -Vector3.right*currentScale,
-             Vector3.up*currentScale,
-            -Vector3.up*currentScale
+             Vector3.right,
+            -Vector3.right,
+             Vector3.up,
+            -Vector3.up
         } ;
 
-        var testDists = new List<float> { 1.1f, 1.1f, 2.1f, 2.1f };
+        var testDists = new List<float> { 1.1f * currentScale, 1.1f * currentScale, 2.1f * currentScale, 2.1f * currentScale};
 
         for (int i = 0; i < 4; ++i)
         {

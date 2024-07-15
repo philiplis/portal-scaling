@@ -120,6 +120,7 @@ public class PortalableObject : MonoBehaviour
         outPortal = tmp;
     }
 
+
     public void ExitPortal(Collider wallCollider)
     {
         Physics.IgnoreCollision(collider, wallCollider, false);

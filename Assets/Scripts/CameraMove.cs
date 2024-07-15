@@ -170,31 +170,38 @@ public class CameraMove : MonoBehaviour
         // Move the camera.
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
-        moveVector = new UnityEngine.Vector3(x, 0.0f, z) * moveSpeed;
+        moveVector = new Vector3(x, 0.0f, z) * moveSpeed;
 
         // Jumping logic
-        if (IsGrounded())
-        {
-            verticalVelocity = -gravity * Time.deltaTime;
+        
+        //if (IsGrounded())
+        //{
+        //    verticalVelocity = -gravity * Time.deltaTime;
 
-            if (Input.GetButtonDown("Jump"))
-            {
-                verticalVelocity = Mathf.Sqrt(jumpHeight * 2 * gravity);
-            }
-        }
-        else
-        {
-            verticalVelocity -= gravity * Time.deltaTime;
-        }
+        //    if (Input.GetButtonDown("Jump"))
+        //    {
+        //        verticalVelocity = Mathf.Sqrt(jumpHeight * 2 * gravity);
+        //    }
+        //}
+        //else
+        //{
+        //    verticalVelocity -= gravity * Time.deltaTime;
+        //}
     }
 
     private void FixedUpdate()
     {
+        
+        //moveVector[1] 
         UnityEngine.Vector3 newVelocity = transform.TransformDirection(moveVector);
-        newVelocity.y = verticalVelocity;
+        //newVelocity.y = verticalVelocity;
 
         //characterController.Move(newVelocity * Time.deltaTime);
         rb.velocity = newVelocity;
+        if (Input.GetButtonDown("Jump"))
+        {
+            rb.AddForce(new Vector3(0, 100 * transform.parent.transform.localScale[0], 0), ForceMode.Impulse);
+        }
     }
 
     public void ResetTargetRotation()
