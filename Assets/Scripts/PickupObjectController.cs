@@ -76,7 +76,6 @@ public class PickupObjectController : MonoBehaviour
 
     public void UpdateParamsOnScale(float playerScale)
     {
-        Debug.Log(transform.forward);
         Vector3 direction = transform.forward;
         Vector3 newPos = transform.position + direction * 1.5f * playerScale;
         objectHoldArea.position = newPos;

@@ -17,8 +17,9 @@ public class PlayerController : PortalableObject
 
     public override void Warp()
     {
-        float newPlayerScale = transform.localScale[0];
+        
         base.Warp();
+        float newPlayerScale = transform.localScale[0];
         pickupObjectController.UpdateParamsOnScale(newPlayerScale);
         cameraMove.moveSpeed = 5.0f * newPlayerScale;
         cameraMove.jumpHeight = 1.5f * newPlayerScale;

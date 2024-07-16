@@ -127,6 +127,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 //[RequireComponent(typeof(Rigidbody))]
 public class CameraMove : MonoBehaviour
@@ -140,8 +141,12 @@ public class CameraMove : MonoBehaviour
 
     Rigidbody rb;
     private UnityEngine.Vector3 moveVector = UnityEngine.Vector3.zero;
-    private float verticalVelocity = 0.0f;
 
+
+    float horizontalMovement;
+    float verticalMovement;
+
+    Vector3 moveDirection;
 
     private void Awake()
     {
@@ -168,9 +173,10 @@ public class CameraMove : MonoBehaviour
             Time.deltaTime * 15.0f);
 
         // Move the camera.
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-        moveVector = new Vector3(x, 0.0f, z) * moveSpeed;
+        //float x = Input.GetAxis("Horizontal");
+        //float z = Input.GetAxis("Vertical");
+        //moveVector = new Vector3(x, 0.0f, z) * moveSpeed;
+        PlayerInput();
 
         // Jumping logic
         
@@ -188,21 +194,39 @@ public class CameraMove : MonoBehaviour
         //    verticalVelocity -= gravity * Time.deltaTime;
         //}
     }
-
+    void PlayerInput()
+    {
+        horizontalMovement = Input.GetAxisRaw("Horizontal");
+        verticalMovement = Input.GetAxisRaw("Vertical");
+        moveDirection = transform.forward * verticalMovement + transform.right * horizontalMovement;
+    }
     private void FixedUpdate()
     {
-        
-        //moveVector[1] 
-        UnityEngine.Vector3 newVelocity = transform.TransformDirection(moveVector);
-        //newVelocity.y = verticalVelocity;
 
-        //characterController.Move(newVelocity * Time.deltaTime);
-        rb.velocity = newVelocity;
+
+        Vector3 force = moveDirection.normalized * moveSpeed * 10f;
+        force.y = 0;
         if (Input.GetButtonDown("Jump"))
         {
-            rb.AddForce(new Vector3(0, 100 * transform.parent.transform.localScale[0], 0), ForceMode.Impulse);
+            //force.y = 100 * transform.parent.transform.localScale[0]
+            rb.AddForce(new Vector3(0, 20 * jumpHeight, 0), ForceMode.Impulse);
         }
+        rb.AddForce(force, ForceMode.Acceleration);
     }
+    //private void FixedUpdate()
+    //{
+        
+    //    //moveVector[1] 
+    //    UnityEngine.Vector3 newVelocity = transform.TransformDirection(moveVector);
+    //    //newVelocity.y = verticalVelocity;
+
+    //    //characterController.Move(newVelocity * Time.deltaTime);
+    //    rb.velocity = newVelocity;
+    //    if (Input.GetButtonDown("Jump"))
+    //    {
+    //        rb.AddForce(new Vector3(0, 15 * jumpHeight, 0), ForceMode.Impulse);
+    //    }
+    //}
 
     public void ResetTargetRotation()
     {
