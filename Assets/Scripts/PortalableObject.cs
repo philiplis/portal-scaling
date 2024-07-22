@@ -33,6 +33,10 @@ public class PortalableObject : MonoBehaviour
 
     protected virtual void Awake()
     {
+        if (GetComponent<Rigidbody>() == null)
+        {
+            return;
+        }
         cloneObject = new GameObject();
         cloneObject.SetActive(false);
         var meshFilter = cloneObject.AddComponent<MeshFilter>();

@@ -6,7 +6,7 @@ public class ScaleController : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
-    public float scaleFactor = 1.0f; 
+    public float scaleFactor = 1f; 
     public Text scaleFactorText;
     public Text playerScaleText;
     private void Update()

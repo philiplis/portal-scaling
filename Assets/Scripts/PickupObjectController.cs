@@ -14,6 +14,8 @@ public class PickupObjectController : MonoBehaviour
     [SerializeField] float pickupRange = 5.0f;
     [SerializeField] float pickupForce = 150.0f;
 
+    float playerScale = 1f;
+
     private void Start()
     {
         UpdateParamsOnScale(1f);
@@ -22,6 +24,7 @@ public class PickupObjectController : MonoBehaviour
 
     private void Update()
     {
+        UpdatePickupAreaLocation();
         if (Input.GetKeyDown(KeyCode.E))
         {
             if(heldObject == null)
@@ -74,8 +77,17 @@ public class PickupObjectController : MonoBehaviour
         }
     }
 
-    public void UpdateParamsOnScale(float playerScale)
+    void UpdatePickupAreaLocation()
     {
+  
+        Vector3 direction = transform.forward;
+        Vector3 newPos = transform.position + direction * 1.5f * playerScale;
+        objectHoldArea.position = newPos;
+    }
+
+    public void UpdateParamsOnScale(float newPlayerScale)
+    {
+        playerScale = newPlayerScale;
         Vector3 direction = transform.forward;
         Vector3 newPos = transform.position + direction * 1.5f * playerScale;
         objectHoldArea.position = newPos;
