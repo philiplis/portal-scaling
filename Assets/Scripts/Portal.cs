@@ -52,7 +52,7 @@ public class Portal : MonoBehaviour
         for (int i = 0; i < portalObjects.Count; ++i)
         {
             Vector3 objPos = transform.InverseTransformPoint(portalObjects[i].transform.position);
-
+          
             if (objPos.z > 0.0f)
             {
                 portalObjects[i].Warp();

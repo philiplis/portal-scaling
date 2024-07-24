@@ -202,15 +202,13 @@ public class CameraMove : MonoBehaviour
     }
     private void FixedUpdate()
     {
-
-
-        Vector3 force = moveDirection.normalized * moveSpeed * 10f;
-        force.y = 0;
         if (Input.GetButtonDown("Jump"))
         {
             //force.y = 100 * transform.parent.transform.localScale[0]
             rb.AddForce(new Vector3(0, 20 * jumpHeight, 0), ForceMode.Impulse);
         }
+        Vector3 force = moveDirection.normalized * moveSpeed * 10f;
+        force.y = -9.8f;
         rb.AddForce(force, ForceMode.Acceleration);
     }
     //private void FixedUpdate()

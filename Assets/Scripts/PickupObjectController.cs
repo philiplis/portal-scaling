@@ -43,6 +43,10 @@ public class PickupObjectController : MonoBehaviour
         if (heldObject != null)
         {
             MoveObject();
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                ThrowObject();
+            }
         }
     }
 
@@ -75,6 +79,12 @@ public class PickupObjectController : MonoBehaviour
             Vector3 moveDir = (objectHoldArea.position - heldObject.transform.position);
             heldObjectRB.AddForce(moveDir * pickupForce);
         }
+    }
+
+    void ThrowObject()
+    {
+        DropObject();
+        heldObjectRB.AddForce(transform.forward * playerScale * 5, ForceMode.Impulse);
     }
 
     void UpdatePickupAreaLocation()
