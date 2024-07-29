@@ -84,7 +84,8 @@ public class PickupObjectController : MonoBehaviour
     void ThrowObject()
     {
         DropObject();
-        heldObjectRB.AddForce(transform.forward * playerScale * 5, ForceMode.Impulse);
+        heldObjectRB.AddForce( (transform.forward * playerScale * 5), ForceMode.Impulse);
+        //TODO incorporate player's current velocity to the force above 
     }
 
     void UpdatePickupAreaLocation()

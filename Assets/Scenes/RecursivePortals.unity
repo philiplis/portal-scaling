@@ -483,7 +483,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Settings
+  m_text: Reset
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -873,7 +873,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseText: {fileID: 0}
   pauseUICanvas: {fileID: 1859580951}
-  portalCrosshairCanvas: {fileID: 1841848125}
+  portalCrosshairCanvas: {fileID: 1454890097}
   scalingUICanvas: {fileID: 178329944}
 --- !u!4 &590526000
 Transform:
@@ -2061,7 +2061,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2164432503524738649}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1841848125}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5689706f89c34094ba5a773e254fe586, type: 3}
@@ -2095,6 +2095,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 7b771a0aed5bc4bcd9ee5664b811eb00, type: 3}
+--- !u!1 &1454890097 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2164432501932773538, guid: edde723163b681847a5271da91d70ea7,
+    type: 3}
+  m_PrefabInstance: {fileID: 2164432503524738649}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1491544380
 GameObject:
   m_ObjectHideFlags: 0
@@ -2356,12 +2362,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 6416302070336371891, guid: 63ca83539075e4dcbaef8f6f84aa7c47, type: 3}
---- !u!1 &1841848125 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2164432502208030146, guid: edde723163b681847a5271da91d70ea7,
-    type: 3}
-  m_PrefabInstance: {fileID: 2164432503524738649}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1859580951
 GameObject:
   m_ObjectHideFlags: 0

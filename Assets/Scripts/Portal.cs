@@ -47,6 +47,12 @@ public class Portal : MonoBehaviour
         SetColour(portalColour);
     }
 
+    public void Reset()
+    {
+        Debug.Log("Reset");
+        PlacePortal(wallCollider, new Vector3(-4f,7.83f,6.81f), new Quaternion(0.00000f, -0.70711f, 0.00000f, 0.70711f)); //just places a portal in geometry player will not be
+    }
+
     private void Update()
     {
         for (int i = 0; i < portalObjects.Count; ++i)
@@ -114,6 +120,9 @@ public class Portal : MonoBehaviour
 
     public void PlacePortal(Collider wallCollider, Vector3 pos, Quaternion rot)
     {
+        Debug.Log(wallCollider);
+        Debug.Log(pos);
+        Debug.Log(rot);
         this.wallCollider = wallCollider;
         transform.position = pos;
         transform.rotation = rot;

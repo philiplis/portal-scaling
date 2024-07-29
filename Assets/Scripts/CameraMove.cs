@@ -159,13 +159,16 @@ public class CameraMove : MonoBehaviour
 
     private void Update()
     {
-        
+
 
         // Move the camera.
         //float x = Input.GetAxis("Horizontal");
         //float z = Input.GetAxis("Vertical");
         //moveVector = new Vector3(x, 0.0f, z) * moveSpeed;
-        PlayerInput();
+        if (!PauseController.gameIsPaused)
+        {
+            PlayerInput();
+        }
 
         // Jumping logic
         
@@ -202,14 +205,18 @@ public class CameraMove : MonoBehaviour
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         verticalMovement = Input.GetAxisRaw("Vertical");
         moveDirection = transform.forward * verticalMovement + transform.right * horizontalMovement;
-    }
-    private void FixedUpdate()
-    {
-        if (Input.GetButtonDown("Jump"))
+
+        //Player jump
+        if ( Input.GetButtonDown("Jump") && IsGrounded())
         {
             //force.y = 100 * transform.parent.transform.localScale[0]
             rb.AddForce(new Vector3(0, 20 * jumpHeight, 0), ForceMode.Impulse);
+
         }
+        
+    }
+    private void FixedUpdate()
+    {
         Vector3 force = moveDirection.normalized * moveSpeed * 10f;
         force.y = -9.8f;
         rb.AddForce(force, ForceMode.Acceleration);
@@ -234,17 +241,8 @@ public class CameraMove : MonoBehaviour
         TargetRotation = UnityEngine.Quaternion.LookRotation(transform.forward, UnityEngine.Vector3.up);
     }
 
-    private bool IsGrounded()
+    bool IsGrounded()
     {
-        RaycastHit hit;
-        float currentPlayerScale = transform.parent.transform.localScale[0];
-        float rayLength = 1.54f * currentPlayerScale; // Adjust based on your character's size
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, rayLength))
-        {
-            return true;
-        }
-        Debug.Log("not grounded!");
-        return false;
-
+        return (GetComponentInParent<Rigidbody>().velocity.y == 0) ;
     }
 }

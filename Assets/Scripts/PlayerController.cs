@@ -22,7 +22,7 @@ public class PlayerController : PortalableObject
         float newPlayerScale = transform.localScale[0];
         pickupObjectController.UpdateParamsOnScale(newPlayerScale);
         cameraMove.moveSpeed = 5.0f * newPlayerScale;
-        cameraMove.jumpHeight = 1.5f * newPlayerScale;
+        cameraMove.jumpHeight = 4f * newPlayerScale;
         scaleController.UpdateScaleFactorText();
         cameraMove.ResetTargetRotation();
         Quaternion currentRotation = transform.rotation;
