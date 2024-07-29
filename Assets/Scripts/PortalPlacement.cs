@@ -40,6 +40,10 @@ public class PortalPlacement : MonoBehaviour
 
         if(hit.collider != null)
         {
+            if (hit.collider.tag == "Non Portalable Surface")
+            {
+                return;
+            }
             if (hit.collider.tag == "Portal")
             {
                 var inPortal = hit.collider.GetComponent<Portal>();

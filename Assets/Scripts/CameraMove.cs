@@ -150,7 +150,7 @@ public class CameraMove : MonoBehaviour
 
     private void Awake()
     {
-        
+        Time.timeScale = 1;
         rb = GetComponentInParent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -159,18 +159,7 @@ public class CameraMove : MonoBehaviour
 
     private void Update()
     {
-        // Rotate the camera.
-        var rotation = new UnityEngine.Vector2(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"));
-        var targetEuler = TargetRotation.eulerAngles + (UnityEngine.Vector3)rotation * cameraSpeed;
-        if (targetEuler.x > 180.0f)
-        {
-            targetEuler.x -= 360.0f;
-        }
-        targetEuler.x = Mathf.Clamp(targetEuler.x, -75.0f, 75.0f);
-        TargetRotation = UnityEngine.Quaternion.Euler(targetEuler);
-
-        transform.rotation = UnityEngine.Quaternion.Slerp(transform.rotation, TargetRotation,
-            Time.deltaTime * 15.0f);
+        
 
         // Move the camera.
         //float x = Input.GetAxis("Horizontal");
@@ -196,6 +185,20 @@ public class CameraMove : MonoBehaviour
     }
     void PlayerInput()
     {
+        // Rotate the camera.
+        var rotation = new UnityEngine.Vector2(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"));
+        var targetEuler = TargetRotation.eulerAngles + (UnityEngine.Vector3)rotation * cameraSpeed;
+        if (targetEuler.x > 180.0f)
+        {
+            targetEuler.x -= 360.0f;
+        }
+        targetEuler.x = Mathf.Clamp(targetEuler.x, -75.0f, 75.0f);
+        TargetRotation = UnityEngine.Quaternion.Euler(targetEuler);
+
+        transform.rotation = UnityEngine.Quaternion.Slerp(transform.rotation, TargetRotation,
+            Time.deltaTime * 15.0f);
+
+        //Player Movement
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         verticalMovement = Input.GetAxisRaw("Vertical");
         moveDirection = transform.forward * verticalMovement + transform.right * horizontalMovement;
