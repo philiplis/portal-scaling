@@ -26,7 +26,7 @@ public class PlayerController : PortalableObject
         scaleController.UpdateScaleFactorText();
         cameraMove.ResetTargetRotation();
         Quaternion currentRotation = transform.rotation;
-        Quaternion newRotation = Quaternion.Euler(0, currentRotation.eulerAngles.y, currentRotation.eulerAngles.z);
+        Quaternion newRotation = Quaternion.Euler(0, currentRotation.eulerAngles.y, 0);
         transform.rotation = newRotation;
     }
 }

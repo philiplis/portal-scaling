@@ -16,6 +16,9 @@ public class CubeResetter : MonoBehaviour
     [SerializeField]
     private Portal portal2;
 
+    [SerializeField]
+    private Crosshair crosshair;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Pickupable Object"))
@@ -27,6 +30,7 @@ public class CubeResetter : MonoBehaviour
         {
             portal1.Reset();
             portal2.Reset();
+            crosshair.ResetCrosshair();
         }
     }
    

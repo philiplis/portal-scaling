@@ -7,6 +7,7 @@ TagManager:
   - Portal
   - Object Hold Area
   - Non Portalable Surface
+  - Pickupable Object
   layers:
   - Default
   - TransparentFX
@@ -19,8 +20,8 @@ TagManager:
   - Player
   - LevelGeom
   - Portal
-  - 
-  - 
+  - PortalBarrier
+  - Objects
   - 
   - 
   - 

@@ -21,8 +21,7 @@ public class Crosshair : MonoBehaviour
         inPortalImg.color = portals[0].GetColour();
         outPortalImg.color = portals[1].GetColour();
 
-        inPortalImg.gameObject.SetActive(false);
-        outPortalImg.gameObject.SetActive(false);
+        ResetCrosshair();
     }
 
     public void SetPortalPlaced(int portalID, bool isPlaced)
@@ -35,5 +34,11 @@ public class Crosshair : MonoBehaviour
         {
             outPortalImg.gameObject.SetActive(isPlaced);
         }
+    }
+
+    public void ResetCrosshair()
+    {
+        inPortalImg.gameObject.SetActive(false);
+        outPortalImg.gameObject.SetActive(false);
     }
 }

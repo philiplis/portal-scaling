@@ -45,12 +45,13 @@ public class Portal : MonoBehaviour
         scaleController = FindObjectOfType<ScaleController>();
         PlacePortal(wallCollider, transform.position, transform.rotation);
         SetColour(portalColour);
+        Reset();
     }
 
     public void Reset()
     {
         Debug.Log("Reset");
-        PlacePortal(wallCollider, new Vector3(-4f,7.83f,6.81f), new Quaternion(0.00000f, -0.70711f, 0.00000f, 0.70711f)); //just places a portal in geometry player will not be
+        PlacePortal(wallCollider, new Vector3(19.20f, 21.72f, 5.60f), new Quaternion(0.00000f, 0.70711f, 0.00000f, 0.70711f)); //just places a portal in geometry player will not be
     }
 
     private void Update()
