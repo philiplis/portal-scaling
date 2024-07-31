@@ -8,6 +8,7 @@ public class PressurePlate : MonoBehaviour
     private Transform door;
 
     private bool isOpen = false;
+    private int objectsOnPlate = 0;
 
     private Vector3 startingPos;
     private Vector3 openPos;
@@ -21,7 +22,8 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!isOpen)
+        objectsOnPlate++;
+        if (!isOpen && objectsOnPlate > 0)
         {
             StopAllCoroutines();
             StartCoroutine(MoveDoor(openPos));
@@ -32,7 +34,8 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (isOpen)
+        objectsOnPlate--;
+        if (isOpen && objectsOnPlate <= 0)
         {
             StopAllCoroutines();
             StartCoroutine(MoveDoor(startingPos));
