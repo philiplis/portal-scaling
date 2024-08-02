@@ -7,12 +7,14 @@ public class PickupObjectController : MonoBehaviour
 {
     [Header("Pickup Settings")]
     [SerializeField] Transform objectHoldArea;
+    [SerializeField] float holdAreaDistanceMultiplier = 2.0f;
     private GameObject heldObject;
     private Rigidbody heldObjectRB;
 
     [Header("Physics parameters")]
     [SerializeField] float pickupRange = 5.0f;
     [SerializeField] float pickupForce = 150.0f;
+    [SerializeField] float throwForce = 5.0f;
 
     float playerScale = 1f;
 
@@ -84,7 +86,7 @@ public class PickupObjectController : MonoBehaviour
     void ThrowObject()
     {
         DropObject();
-        heldObjectRB.AddForce( (transform.forward * playerScale * 5), ForceMode.Impulse);
+        heldObjectRB.AddForce( (transform.forward * playerScale * throwForce), ForceMode.Impulse);
         //TODO incorporate player's current velocity to the force above 
     }
 
@@ -92,16 +94,14 @@ public class PickupObjectController : MonoBehaviour
     {
   
         Vector3 direction = transform.forward;
-        Vector3 newPos = transform.position + direction * 1.5f * playerScale;
+        Vector3 newPos = transform.position + (direction * holdAreaDistanceMultiplier * playerScale);
         objectHoldArea.position = newPos;
     }
 
     public void UpdateParamsOnScale(float newPlayerScale)
     {
         playerScale = newPlayerScale;
-        Vector3 direction = transform.forward;
-        Vector3 newPos = transform.position + direction * 1.5f * playerScale;
-        objectHoldArea.position = newPos;
+        UpdatePickupAreaLocation();
         pickupForce = 150.0f * playerScale;
         pickupRange = 5.0f * playerScale;
     }
