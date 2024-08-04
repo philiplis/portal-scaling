@@ -23,8 +23,9 @@ public class CubeResetter : MonoBehaviour
     {
         if (other.CompareTag("Pickupable Object"))
         {
-            Destroy(other.gameObject);
-            Instantiate(cubePrefab, originalPosition.position, originalPosition.rotation);
+            other.transform.position = originalPosition.position;
+            //Destroy(other.gameObject);
+            //Instantiate(cubePrefab, originalPosition.position, originalPosition.rotation);
         }
         else if (other.CompareTag("Player"))
         {

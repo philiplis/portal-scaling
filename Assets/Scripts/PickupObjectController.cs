@@ -29,7 +29,7 @@ public class PickupObjectController : MonoBehaviour
         UpdatePickupAreaLocation();
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if(heldObject == null)
+            if (heldObject == null)
             {
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickupRange))
@@ -86,15 +86,17 @@ public class PickupObjectController : MonoBehaviour
     void ThrowObject()
     {
         DropObject();
-        heldObjectRB.AddForce( (transform.forward * playerScale * throwForce), ForceMode.Impulse);
+        heldObjectRB.AddForce((transform.forward * playerScale * throwForce), ForceMode.Impulse);
         //TODO incorporate player's current velocity to the force above 
     }
 
     void UpdatePickupAreaLocation()
     {
-  
+        //float objectSize = pickObject.GetComponent<Renderer>().bounds.size.magnitude;
+        //float playerSize = GetComponentInParent<Collider>().bounds.size.magnitude;
+
         Vector3 direction = transform.forward;
-        Vector3 newPos = transform.position + (direction * holdAreaDistanceMultiplier * playerScale);
+        Vector3 newPos = transform.position + direction * 1.5f * playerScale;
         objectHoldArea.position = newPos;
     }
 
