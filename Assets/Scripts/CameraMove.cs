@@ -20,6 +20,7 @@ public class CameraMove : MonoBehaviour
     float verticalMovement;
 
     Vector3 moveDirection;
+    ScaleController sc;
 
     private void Awake()
     {
@@ -28,6 +29,8 @@ public class CameraMove : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         TargetRotation = transform.rotation;
+        sc = FindObjectOfType<ScaleController>();
+
     }
 
     private void Update()
@@ -80,6 +83,6 @@ public class CameraMove : MonoBehaviour
 
     bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, Vector3.down, 1.5f); //TODO Multiply by Scale factor
+        return Physics.Raycast(transform.position, Vector3.down, 1.5f * sc.GetPlayerScale() ); //TODO Multiply by Scale factor
     }
 }

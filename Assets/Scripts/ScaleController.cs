@@ -35,4 +35,9 @@ public class ScaleController : MonoBehaviour
         scaleFactorText.text = "Scale Factor: " + scaleFactor.ToString("F2"); // F2 formats to 2 decimal places
         playerScaleText.text = "Player Scale: " + player.transform.localScale[0].ToString("F2"); // F2 formats to 2 decimal places
     }
+
+    public float GetPlayerScale()
+    {
+        return player.transform.localScale[0];
+    }
 }
