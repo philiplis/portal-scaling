@@ -11,6 +11,9 @@ public class CameraMove : MonoBehaviour
     public float moveSpeed = 5.0f;
     public float jumpHeight = 1.5f;
 
+    [SerializeField]
+    float damping = 0.8f;
+
     public UnityEngine.Quaternion TargetRotation { get; private set; }
 
     Rigidbody rb;
@@ -57,8 +60,8 @@ public class CameraMove : MonoBehaviour
             Time.deltaTime * 15.0f);
 
         // Player Movement
-        horizontalMovement = Input.GetAxis("Horizontal");
-        verticalMovement = Input.GetAxis("Vertical");
+        horizontalMovement = Input.GetAxisRaw("Horizontal");
+        verticalMovement = Input.GetAxisRaw("Vertical");
         moveDirection = transform.forward * verticalMovement + transform.right * horizontalMovement;
 
         // Player jump
@@ -74,6 +77,8 @@ public class CameraMove : MonoBehaviour
         Vector3 totalForce = new Vector3(horizontalForce.x, 0, horizontalForce.z);
 
         rb.velocity += totalForce * Time.fixedDeltaTime * 5;
+
+        
     }
 
     public void ResetTargetRotation()

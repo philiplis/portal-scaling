@@ -106,13 +106,14 @@ public class PortalableObject : MonoBehaviour
 
         // Update rotation of object.
         if (!CompareTag("Player"))
-        {
-            Quaternion relativeRot = Quaternion.Inverse(inTransform.rotation) * transform.rotation;
-            relativeRot = halfTurn * relativeRot;
-            Quaternion newRot = outTransform.rotation * relativeRot;
-            transform.rotation = outTransform.rotation * relativeRot;
+        { }
 
-        }
+        Quaternion relativeRot = Quaternion.Inverse(inTransform.rotation) * transform.rotation;
+        relativeRot = halfTurn * relativeRot;
+        Quaternion newRot = outTransform.rotation * relativeRot;
+        transform.rotation = outTransform.rotation * relativeRot;
+
+        
 
 
         // Update velocity of rigidbody.
