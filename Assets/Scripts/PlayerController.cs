@@ -21,12 +21,12 @@ public class PlayerController : PortalableObject
         base.Warp();
         float newPlayerScale = transform.localScale[0];
         pickupObjectController.UpdateParamsOnScale(newPlayerScale);
-        cameraMove.moveSpeed = 5.0f * newPlayerScale;
-        cameraMove.jumpHeight = 1.5f * newPlayerScale;
+        cameraMove.moveSpeed = newPlayerScale*5.0f;
+        cameraMove.jumpHeight = 1.5f * newPlayerScale; //*1.5f
         scaleController.UpdateScaleFactorText();
         cameraMove.ResetTargetRotation();
-        Quaternion currentRotation = transform.rotation;
-        Quaternion newRotation = Quaternion.Euler(0, currentRotation.eulerAngles.y, 0);
-        transform.rotation = newRotation;
+        //Quaternion currentRotation = transform.rotation;
+        //Quaternion newRotation = Quaternion.Euler(0, currentRotation.eulerAngles.y, 0);
+        //transform.rotation = newRotation;
     }
 }

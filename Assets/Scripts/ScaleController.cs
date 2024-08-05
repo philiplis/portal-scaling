@@ -26,7 +26,7 @@ public class ScaleController : MonoBehaviour
             scaleFactor += 0.25f;
             UpdateScaleFactorText();
         }
-        else if (Input.GetKeyDown(KeyCode.R)) // Increment scaleFactor on ] press
+        else if (Input.GetKeyDown(KeyCode.G)) // Increment scaleFactor on ] press
         {
             ResetPlayerScale();
         }

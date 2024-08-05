@@ -7,6 +7,9 @@ public class PressurePlate : MonoBehaviour
     [SerializeField]
     private Transform door;
 
+    [SerializeField]
+    private float minimumMagnitude = 1.5f; //minimum "magnitude of size" needed to make pressure plate activate
+
     private bool isOpen = false;
     private int objectsOnPlate = 0;
 
@@ -29,6 +32,11 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Debug.Log(other.GetComponent<Renderer>().bounds.size.magnitude);
+        if (other.GetComponent<Renderer>().bounds.size.magnitude < minimumMagnitude)
+        {
+            return;
+        }
         objectsOnPlate++;
         if (!isOpen && objectsOnPlate > 0)
         {
@@ -42,6 +50,10 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.GetComponent<Renderer>().bounds.size.magnitude < minimumMagnitude)
+        {
+            return;
+        }
         objectsOnPlate--;
         if (isOpen && objectsOnPlate <= 0)
         {

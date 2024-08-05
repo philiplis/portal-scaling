@@ -5,22 +5,22 @@
       <author>Blender User</author>
       <authoring_tool>Blender 4.1.1 commit date:2024-04-15, commit time:15:11, hash:e1743a0317bc</authoring_tool>
     </contributor>
-    <created>2024-08-04T14:42:06</created>
-    <modified>2024-08-04T14:42:06</modified>
+    <created>2024-08-04T14:56:25</created>
+    <modified>2024-08-04T14:56:25</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_effects>
     <effect id="Material_001-effect">
       <profile_COMMON>
-        <newparam sid="Screenshot_2024-08-04_at_14_33_21_png-surface">
+        <newparam sid="Screenshot_2024-08-04_at_14_56_09_png-surface">
           <surface type="2D">
-            <init_from>Screenshot_2024-08-04_at_14_33_21_png</init_from>
+            <init_from>Screenshot_2024-08-04_at_14_56_09_png</init_from>
           </surface>
         </newparam>
-        <newparam sid="Screenshot_2024-08-04_at_14_33_21_png-sampler">
+        <newparam sid="Screenshot_2024-08-04_at_14_56_09_png-sampler">
           <sampler2D>
-            <source>Screenshot_2024-08-04_at_14_33_21_png-surface</source>
+            <source>Screenshot_2024-08-04_at_14_56_09_png-surface</source>
           </sampler2D>
         </newparam>
         <technique sid="common">
@@ -29,7 +29,7 @@
               <color sid="emission">0 0 0 1</color>
             </emission>
             <diffuse>
-              <texture texture="Screenshot_2024-08-04_at_14_33_21_png-sampler" texcoord="UVMap"/>
+              <texture texture="Screenshot_2024-08-04_at_14_56_09_png-sampler" texcoord="UVMap"/>
             </diffuse>
             <index_of_refraction>
               <float sid="ior">1.5</float>
@@ -40,8 +40,8 @@
     </effect>
   </library_effects>
   <library_images>
-    <image id="Screenshot_2024-08-04_at_14_33_21_png" name="Screenshot_2024-08-04_at_14_33_21_png">
-      <init_from>Screenshot%202024-08-04%20at%2014.33.21.png</init_from>
+    <image id="Screenshot_2024-08-04_at_14_56_09_png" name="Screenshot_2024-08-04_at_14_56_09_png">
+      <init_from>Screenshot%202024-08-04%20at%2014.56.09.png</init_from>
     </image>
   </library_images>
   <library_materials>

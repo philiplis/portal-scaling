@@ -50,7 +50,7 @@ public class Portal : MonoBehaviour
 
     public void Reset()
     {
-        Debug.Log("Reset");
+        //Debug.Log("Reset");
         PlacePortal(wallCollider, new Vector3(19.20f, 21.72f, 5.60f), new Quaternion(0.00000f, 0.70711f, 0.00000f, 0.70711f)); //just places a portal in geometry player will not be
     }
 
@@ -121,9 +121,6 @@ public class Portal : MonoBehaviour
 
     public void PlacePortal(Collider wallCollider, Vector3 pos, Quaternion rot)
     {
-        Debug.Log(wallCollider);
-        Debug.Log(pos);
-        Debug.Log(rot);
         this.wallCollider = wallCollider;
         transform.position = pos;
         transform.rotation = rot;

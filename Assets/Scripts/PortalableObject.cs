@@ -105,14 +105,22 @@ public class PortalableObject : MonoBehaviour
         transform.position = outTransform.TransformPoint(relativePos);
 
         // Update rotation of object.
-        Quaternion relativeRot = Quaternion.Inverse(inTransform.rotation) * transform.rotation;
-        relativeRot = halfTurn * relativeRot;
-        transform.rotation = outTransform.rotation * relativeRot;
+        if (!CompareTag("Player"))
+        {
+            Quaternion relativeRot = Quaternion.Inverse(inTransform.rotation) * transform.rotation;
+            relativeRot = halfTurn * relativeRot;
+            Quaternion newRot = outTransform.rotation * relativeRot;
+            transform.rotation = outTransform.rotation * relativeRot;
+
+        }
+
 
         // Update velocity of rigidbody.
+        Debug.Log(rigidbody.velocity);
         Vector3 relativeVel = inTransform.InverseTransformDirection(rigidbody.velocity);
         relativeVel = halfTurn * relativeVel;
         rigidbody.velocity = outTransform.TransformDirection(relativeVel);
+        Debug.Log(rigidbody.velocity);
 
         //update Scale of the object
         float scaleRatio = outPortal.currentScale / inPortal.currentScale;

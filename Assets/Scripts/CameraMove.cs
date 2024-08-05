@@ -57,8 +57,8 @@ public class CameraMove : MonoBehaviour
             Time.deltaTime * 15.0f);
 
         // Player Movement
-        horizontalMovement = Input.GetAxisRaw("Horizontal");
-        verticalMovement = Input.GetAxisRaw("Vertical");
+        horizontalMovement = Input.GetAxis("Horizontal");
+        verticalMovement = Input.GetAxis("Vertical");
         moveDirection = transform.forward * verticalMovement + transform.right * horizontalMovement;
 
         // Player jump
@@ -71,9 +71,9 @@ public class CameraMove : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 horizontalForce = moveDirection.normalized * moveSpeed;
-        Vector3 totalForce = new Vector3(horizontalForce.x, rb.velocity.y, horizontalForce.z);
+        Vector3 totalForce = new Vector3(horizontalForce.x, 0, horizontalForce.z);
 
-        rb.velocity = totalForce;
+        rb.velocity += totalForce * Time.fixedDeltaTime * 5;
     }
 
     public void ResetTargetRotation()

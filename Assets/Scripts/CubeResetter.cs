@@ -19,12 +19,16 @@ public class CubeResetter : MonoBehaviour
     [SerializeField]
     private Crosshair crosshair;
 
+    GameObject copyObject;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Pickupable Object"))
         {
-            other.transform.position = originalPosition.position;
-            //Destroy(other.gameObject);
+            copyObject = Instantiate(other.gameObject, originalPosition.position,originalPosition.rotation);
+            copyObject.GetComponent<Rigidbody>().useGravity = true;
+            copyObject.transform.localScale = new Vector3(1, 1, 1);
+            Destroy(other.gameObject);
             //Instantiate(cubePrefab, originalPosition.position, originalPosition.rotation);
         }
         else if (other.CompareTag("Player"))
